@@ -41,21 +41,16 @@ echo "# Password => $(aws ec2 get-password-data --instance-id $INSTANCE_ID --pri
 echo "
 #######
 # Please use password above to log into Windows using RDP
-# Install Parsec and GPU drivers using this script
+# Install Parsec and GPU drivers using the script from Parsec Team.
 #
 
-[Net.ServicePointManager]::SecurityProtocol = "tls12, tls11, tls"
-$ScriptWebArchive = "https://github.com/parsec-cloud/Parsec-Cloud-Preparation-Tool/archive/master.zip"
-$LocalArchivePath = "$ENV:UserProfile\Downloads\Parsec-Cloud-Preparation-Tool"
-(New-Object System.Net.WebClient).DownloadFile($ScriptWebArchive, "$LocalArchivePath.zip")
-Expand-Archive "$LocalArchivePath.zip" -DestinationPath $LocalArchivePath -Force
-CD $LocalArchivePath\Parsec-Cloud-Preparation-Tool-master\ | powershell.exe .\loader.ps1
+> https://github.com/parsec-cloud/Parsec-Cloud-Preparation-Tool/blob/master/README.md
 
 #
-# You're going to need new AWS access key & private key, now generating...
+# You're going to need new AWS access key & secret key, now showing access key & secret key in your PC...
 #######"
 
-echo "# Access Key & Secret Key => $(aws iam create-access-key)"
+echo "# Access Key & Secret Key => $(cat ~/.aws/credentials)"
 
 echo "
 #######
