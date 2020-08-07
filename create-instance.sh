@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PRIVATE_KEY="~/.ssh/privkey.pem"
+PRIVATE_KEY="<PRIVATE_KEY_FILE_LOCATION>"
 
 echo "
 #######
