@@ -7,13 +7,16 @@ echo "
 # Terminating instance...
 #######
 "
-SFR_ID=$(head -n 10 terraform.tfstate | egrep -oh "(sfr)-[a-z0-9-]{36}")
+SFR_ID=$(head terraform.tfstate | egrep -oh "(sfr)-[a-z0-9-]{36}")
+SFR_INSTANCE_INFO=$(aws ec2 describe-spot-fleet-instances --spot-fleet-request-id $SFR_ID)
+INSTANCE_ID=$(echo $SFR_INSTANCE_INFO | egrep -oh "(i)-[a-z0-9]{17}")
 
-TERMINATE_MESSAGE=$(aws ec2 cancel-spot-fleet-requests --spot-fleet-request-ids $SFR_ID --terminate-instances)
+aws ec2 terminate-instances --instance-ids $INSTANCE_ID
 
 echo "
 #######
-# Command sent! Now termiating...
+# Command sent! Now removing data in terraform.tfstate
 #######
 "
 
+cdktf destroy --auto-approve
