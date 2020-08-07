@@ -18,7 +18,7 @@ class MyStack extends TerraformStack {
         allocationStrategy: "lowestPrice",
         fleetType: "request",
         launchSpecification:[{
-            ami: "ami-01046016cbd598e8c",
+            ami: "ami-0f1d9d91c16265769",
             instanceType: "g4dn.xlarge",
             keyName: "<KEY_NAME>",
             vpcSecurityGroupIds:["<SECURITY_GROUP_ID>"],
